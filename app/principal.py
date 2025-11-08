@@ -1,26 +1,28 @@
+import os
 import streamlit as st
 
 def main():
-    st.set_page_config(page_title="VIP Contratos", page_icon="🪚", layout="wide")
-
-    # Cabecera
-    st.image("app/assets/logo.png", width=100)
-    st.title("🪚 VIP Contratos")
-    st.subheader("Sistema inteligente de cotizaciones y contratos")
-
-    st.markdown("---")
-
-    # Sección de bienvenida
-    st.write(
-        "Bienvenido al sistema VIP-Contratos. "
-        "Aquí podrás generar cotizaciones, contratos y exportar documentos automáticamente."
+    # Configuración de la página
+    st.set_page_config(
+        page_title="VIP Contratos",
+        page_icon="🪚",
+        layout="wide"
     )
 
-    # Botón de prueba para futuras cotizaciones
-    if st.button("Generar cotización de prueba"):
-        st.success("✅ Funcionalidad de cotización en construcción.")
+    # Ruta segura al logo
+    carpeta_actual = os.path.dirname(__file__)
+    ruta_logo = os.path.join(carpeta_actual, "assets", "logo.png")
 
-    # Pie de página
+    if os.path.exists(ruta_logo):
+        st.image(ruta_logo, width=100)
+    else:
+        st.warning("⚠️ Logo no encontrado en 'app/assets/logo.png'")
+
+    st.markdown("---")
+    st.markdown(
+        "<h1 style='text-align:center; color:#FF5733;'>¡Hola VIP-Contratos!</h1>",
+        unsafe_allow_html=True
+    )
     st.markdown("---")
     st.caption("© 2025 VIP Contratos - Todos los derechos reservados")
 
